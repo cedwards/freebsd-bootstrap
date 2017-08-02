@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# run $1 inside each jail
+
+JAILS=$(jls | awk '!/JID|poudriere/ { print $1 }')
+
+for i in ${JAILS}; do
+    jexec ${i} $*
+done
